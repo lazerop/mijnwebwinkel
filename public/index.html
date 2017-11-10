@@ -23,11 +23,20 @@
     <!--Controllers-->
     <script type="text/javascript" src="LoginController.js"></script>
     <script type="text/javascript" src="ProductsController.js"></script>
+    <script type="text/javascript" src="ContentController.js"></script>
 
 </head>
     <body>
 
-    <div id="content">
+    <div id="content" ng-controller="ContentCtrl">
+        <div id="header">
+            Products in cart: {{ cart_size }}
+        </div>
+
+        <div id="messages">
+            <div class="message" ng-repeat="message in messages">{{ message }}</div>
+        </div>
+
         <div id="products" ng-controller="ProductsCtrl">
             <div id="all_product" ng-show="!productSelected">
                 PRODUCTS:
@@ -40,7 +49,7 @@
                 <div>Naam: {{ selectedProduct.name }}</div>
                 <div>Prijs (zonder BTW): {{ selectedProduct.price_before_tax }}</div>
                 <div>BTW: {{ selectedProduct.tax_percentage }} %</div>
-                <div ng-click="orderProduct(selectedProduct.id)">ADD TO CART</div>
+                <div ng-click="orderProduct()">ADD TO CART</div>
 
                 <div>
                     <image width="100px" ng-src="{{selectedProduct.photo_url}}"></image>

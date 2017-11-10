@@ -3,7 +3,7 @@
 (function() {
     angular
         .module('webcart', [])
-        .run(function ($rootScope) {
+        .run(function () {
         })
 
         .config(function () {
