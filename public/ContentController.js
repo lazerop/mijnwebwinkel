@@ -14,12 +14,13 @@
 
         $rootScope.$on('product ordered', function(event, args) {
             // Add temporary message
+            var messages = $scope.messages;
             var timestamp = Date.now();
 
-            $scope.messages[timestamp] = 'Product ' + args['product']['name'] + ' added to cart';
+            messages[timestamp] = 'Product ' + args['product']['name'] + ' added to cart';
 
             $timeout(function () {
-                delete $scope.messages[timestamp];
+                delete messages[timestamp];
             }, 3000);
 
             // Add 1 to cart

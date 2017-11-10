@@ -1,13 +1,9 @@
+body {
+    user-select: none;
+}
+
 img {
     width: 100px;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-table {
-    border-collapse: collapse;
 }
 
 #login-overlay {
@@ -37,25 +33,108 @@ table {
     border: 0;
 }
 
+#content .header {
+    border: 1px solid pink;
+    width: 100%;
+}
+
+#products {
+    padding: 20px 10px 0px 0px;
+}
+
 #productDetail {
-    border: 3px solid green;
+    padding: 2px;
+    font-size: 20px;
+}
+
+#productDetail > div {
+    padding: 15px 0px;
+}
+
+#productDetail img {
+    width: 550px;
+}
+
+td:not(.product_image) {
+    padding-left: 15px !important;
 }
 
 .product-label {
-    margin: 2px;
+    float: left;
+    margin: 2px 10px;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    border: 1px dotted lightsteelblue;
+    background-color: lightgrey;
+}
+
+.product-label div {
+    position: relative;
+    top: calc(50% - 55px);
+    width: 300px;
+    left: 25px;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 600;
+}
+
+#button-bar {
+    height: calc(1em + 9px);
+    margin: 5px 0px;
 }
 
 .button {
     border: 1px solid black;
-    border-radius: 2px;
-    padding: 3px;
+    border-radius: 5px;
     margin: 1px;
-    width: 100px;
-    height: 15px;
-    background-color: red;
+    width: 200px;
+    background-color: cornflowerblue;
     cursor: pointer;
+    font-size: 20px;
+    height: 22px;
+    text-align: left;
+    padding: 0px 0px 0px 3px !important;
+}
+
+#top_header {
+    height: 1em;
+    padding: 2px;
+    background-color: rgba(236, 201, 62, .3);
+}
+
+#messages {
+    width: 100%;
+    border-top: 1px dashed lightgrey;
+    border-bottom: 1px dashed lightgrey;
+    margin-top: 10px;
+    height: calc(3em + 10px);
+    overflow: hidden;
+}
+
+#products {
+    height: 60%;
+    width: 100%;
+}
+
+#cart {
+    border: 2px solid purple;
+    padding: 15px;
+    width: 500px;
 }
 
 #cart .total_price {
     font-weight: bold;
+}
+
+#cart #grand_total {
+    font-size: 25px;
+}
+
+#cart #all_orders {
+    margin-top: 20px;
+}
+
+#cart #all_orders th:not(.product_image) {
+    border-bottom: 4px solid pink;
 }

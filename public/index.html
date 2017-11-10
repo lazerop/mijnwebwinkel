@@ -4,8 +4,6 @@
 <head>
     <title>Webcart</title>
 
-    <!--<link rel="stylesheet" type="text/css" href="style/style.css">-->
-
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="style.css" />
 
@@ -36,38 +34,48 @@
             <div class="message" ng-repeat="message in messages">{{ message }}</div>
         </div>
 
+        <div id="button-bar">
+            <div class="button" ng-if="cartOpen == true" ng-click="closeCart()">CLOSE cart</div>
+            <div class="button" ng-if="cartOpen == false" ng-click="openCart()">OPEN cart</div>
+        </div>
+
         <div id="products" ng-controller="ProductsCtrl" ng-if="!cartOpen">
-            <div id="all_product" ng-show="!productSelected">
-                <div class="header">PRODUCTS</div>
+            <div id="all_products" ng-show="!productSelected">
                 <div ng-repeat="product in products" class="product-label" ng-click="showProductDetails(product.id)">
                     <div>{{ product.name }}</div>
                 </div>
             </div>
 
             <div id="productDetail" ng-show="productSelected">
-                <div>Naam: {{ selectedProduct.name }}</div>
-                <div>Prijs (zonder BTW): {{ selectedProduct.price_before_tax }}</div>
-                <div>BTW: {{ selectedProduct.tax_percentage }} %</div>
-                <div ng-click="orderProduct()">ADD TO CART</div>
 
-                <div>
-                    <image ng-src="{{selectedProduct.photo_url}}"></image>
-                </div>
+                <table>
+                    <tr>
+                        <td class="product_image" rowspan="4"><img ng-src="{{selectedProduct.photo_url}}"/></td>
+                        <td>Naam: {{ selectedProduct.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prijs (zonder BTW): {{ selectedProduct.price_before_tax | currency:'€' }}</td>
+                    </tr>
+                    <tr>
+                        <td>BTW: {{ selectedProduct.tax_percentage }} %</td>
+                    </tr>
+                    <tr>
+                        <td><div class="button" ng-click="orderProduct()">ADD to cart</div></td>
+                    </tr>
+                </table>
 
                 <div class="button" ng-click="backToAllProducts()">BACK to all products</div>
             </div>
         </div>
 
         <div id="cart" ng-if="cartOpen == true" ng-controller="CartCtrl">
-            <div class="header">CART</div>
+            <div id="grand_total">Total price: {{ order_grand_total | currency:'€' }}</div>
 
-            Total price: {{ order_grand_total | currency:'€' }}
-
-            <table>
-                <th></th><th>Name</th><th>Price before tax</th><th>Tax</th><th>Total price</th>
+            <table id="all_orders">
+                <th class="product_image"></th><th>Name</th><th>Price before tax</th><th>Tax</th><th>Total price</th>
 
                 <tr class="orderRow" ng-repeat="order in orders">
-                    <td><image ng-src="{{order.photo_url}}"></image></td>
+                    <td class="product_image"><image ng-src="{{order.photo_url}}"></image></td>
                     <td>{{order.name}}</td>
                     <td>{{order.price_before_tax | currency:'€'}}</td>
                     <td>{{order.tax_percentage}} %</td>
@@ -76,9 +84,6 @@
 
             </table>
         </div>
-
-        <div class="button" ng-if="cartOpen == true" ng-click="closeCart()">CLOSE cart</div>
-        <div class="button" ng-if="cartOpen == false" ng-click="openCart()">OPEN cart</div>
 
     </div>
 
