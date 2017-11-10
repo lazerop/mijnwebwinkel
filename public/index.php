@@ -77,6 +77,16 @@ $app->get('/product/{product_id}/order/{user_id}', function (Request $request, R
     $authenticate($response, $user_id);
 
     Product::orderByUser($product_id, $user_id);
+
+    return restResponse($response, 200);
+});
+
+$app->get('/cart/{user_id}/size', function (Request $request, Response $response, $args) use ($authenticate) {
+    $user_id = (int)$args['user_id'];
+
+    $authenticate($response, $user_id);
+
+    return restResponse($response, 200, Order::getSize($user_id));
 });
 
 $app->get('/login/{user_name}/{password}', function (Request $request, Response $response, $args) {

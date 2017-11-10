@@ -5,7 +5,7 @@
         .module('webcart')
         .controller('ProductsCtrl', ProductsCtrl);
 
-    function ProductsCtrl ($scope, $http, restLocation, session) {
+    function ProductsCtrl ($rootScope, $scope, $http, restLocation, session) {
         $http.get(restLocation + '/products').then(function (data) {
             $scope.products = data.data
         });
@@ -23,13 +23,19 @@
             $scope.productSelected = false;
         };
 
-        $scope.orderProduct = function (product_id) {
+        $scope.orderProduct = function () {
             // Need to authenticate to order
             var user_id = session.loggedin_user_id;
+            var product = $scope.selectedProduct;
 
-            $http.get(restLocation + '/product/' + product_id + '/order/' + user_id).then(
-                function(data) {
-                    console.log(data);
+            $http.get(restLocation + '/product/' + product.id + '/order/' + user_id).then(
+                function() {
+                    $rootScope.$broadcast('product ordered', {
+                        'product': {
+                            'id': product.id,
+                            'name': product.name
+                        }
+                    })
                 }, function (data) {
                     console.log('error ordering');
                     console.log(data);

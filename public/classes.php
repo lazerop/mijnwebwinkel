@@ -73,3 +73,13 @@ class User extends DBObject {
         }
     }
 }
+
+class Order extends DBObject {
+    public static function getSize($user_id) {
+        $cart_size = Order::selectByQuery("SELECT count(*) FROM `order` WHERE user_id=:user_id", array(
+            "user_id" => $user_id
+        ));
+
+        return (int)$cart_size[0]["count(*)"];
+    }
+}
