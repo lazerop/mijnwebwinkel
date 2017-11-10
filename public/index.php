@@ -60,7 +60,7 @@ header("Access-Control-Allow-Origin: *" );
 header("Access-Control-Allow-Headers: origin, content-type, accept, methods");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
-$authenticate = function($response, $user_id) {
+$authenticate = function($user_id) {
     if (!User::isLoggedIn($user_id)) {
         die('Unauthorized request, no user supplied or user is logged out.' );
     }
@@ -74,9 +74,9 @@ $app->get('/product/{product_id}/order/{user_id}', function (Request $request, R
     $user_id = (int)$args['user_id'];
     $product_id = (int)$args['product_id'];
 
-    $authenticate($response, $user_id);
+    $authenticate($user_id);
 
-    Product::orderByUser($product_id, $user_id);
+    Order::orderByUser($product_id, $user_id);
 
     return restResponse($response, 200);
 });
@@ -84,7 +84,7 @@ $app->get('/product/{product_id}/order/{user_id}', function (Request $request, R
 $app->get('/cart/{user_id}/size', function (Request $request, Response $response, $args) use ($authenticate) {
     $user_id = (int)$args['user_id'];
 
-    $authenticate($response, $user_id);
+    $authenticate($user_id);
 
     return restResponse($response, 200, Order::getSize($user_id));
 });

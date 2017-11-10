@@ -27,14 +27,7 @@ class Product extends DBObject {
         return Product::selectByQuery("SELECT * FROM product");
     }
 
-    public static function orderByUser($product_id, $user_id) {
 
-        // Method to order a product for a user. At this point it just order 1, and can be called more then once to order more
-        Product::query("INSERT INTO `order` (product_id, user_id) VALUES (:product_id, :user_id)", array(
-            "product_id" => $product_id,
-            "user_id" => $user_id
-        ));
-    }
 }
 
 class User extends DBObject {
@@ -81,5 +74,13 @@ class Order extends DBObject {
         ));
 
         return (int)$cart_size[0]["count(*)"];
+    }
+
+    public static function orderByUser($product_id, $user_id) {
+            // Method to order a product for a user. At this point it just order 1, and can be called more then once to order more
+        Order::query("INSERT INTO `order` (product_id, user_id) VALUES (:product_id, :user_id)", array(
+                "product_id" => $product_id,
+                "user_id" => $user_id
+            ));
     }
 }
