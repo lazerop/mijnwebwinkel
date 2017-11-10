@@ -35,7 +35,9 @@
             // todo: hack: use translation for message, move backend call somewhere else
             $http.post(restLocation + '/resetTokens', {email: $scope.session.email}).then(function () {
                 alert('password reset email sent');
+                alert('password reset email sent');
             })
         };
     }
 })();
+
