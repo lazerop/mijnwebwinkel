@@ -16,7 +16,7 @@
                     // Successful login
                     if (data.data) {
                         session.valid = true;
-                        session.logged_user_id = data.data;
+                        session.loggedin_user_id = data.data;
                         $scope.error = '';
                     }
                 }, function () {
@@ -31,7 +31,7 @@
 
         $scope.logout = function () {
             session.valid = false;
-            session.logged_user_id = null;
+            session.loggedin_user_id = null;
         };
     }
 })();
