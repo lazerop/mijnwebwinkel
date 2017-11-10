@@ -9,14 +9,13 @@
         $scope.session = {};
 
         $scope.login = function () {
-            console.log(' login f');
-
             $http.get(restLocation + '/login/' + $scope.session.username + '/' + $scope.session.password).then(
                 function (data) {
                     // Successful login
                     if (data.data) {
                         session.valid = true;
                         session.loggedin_user_id = data.data;
+                        session.loggedin_user_name = $scope.session.username;
                         $scope.error = '';
                     }
                 }, function () {

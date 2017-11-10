@@ -68,6 +68,13 @@ class User extends DBObject {
 }
 
 class Order extends DBObject {
+    public static function getCart($user_id) {
+        $querystring = "SELECT * FROM `order` as o LEFT JOIN product ON o.product_id = product.id WHERE user_id=:user_id";
+
+        return Order::selectByQuery($querystring, array(
+            "user_id" => $user_id
+        ));
+    }
     public static function getSize($user_id) {
         $cart_size = Order::selectByQuery("SELECT count(*) FROM `order` WHERE user_id=:user_id", array(
             "user_id" => $user_id

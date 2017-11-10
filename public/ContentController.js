@@ -7,6 +7,7 @@
 
     function ContentCtrl ($scope, $rootScope, restLocation, session, $http, $timeout) {
         $scope.messages = {};
+        $scope.cartOpen = false;
 
         $http.get(restLocation + '/cart/' + session.loggedin_user_id + '/size').then(
             function(data) {$scope.cart_size = data.data});
@@ -25,6 +26,14 @@
             $scope.cart_size++
 
         });
+
+        $scope.openCart = function() {
+            $scope.cartOpen = true;
+        };
+
+        $scope.closeCart = function() {
+            $scope.cartOpen = false;
+        };
 }
 })();
 

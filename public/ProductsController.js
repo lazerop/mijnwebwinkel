@@ -36,9 +36,6 @@
                             'name': product.name
                         }
                     })
-                }, function (data) {
-                    console.log('error ordering');
-                    console.log(data);
                 });
         }
     }

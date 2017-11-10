@@ -1,3 +1,17 @@
+img {
+    width: 100px;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
 #login-overlay {
     z-index: 100;
     position: fixed;
@@ -21,4 +35,8 @@
     border-radius: 2px;
     padding: 3px;
     margin: 1px;
+}
+
+#cart .total_price {
+    font-weight: bold;
 }

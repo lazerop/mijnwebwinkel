@@ -14,8 +14,6 @@
     <!--<script type="text/javascript" src="angular.js"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js"></script>
-
 
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="app.js"></script>
@@ -24,12 +22,13 @@
     <script type="text/javascript" src="LoginController.js"></script>
     <script type="text/javascript" src="ProductsController.js"></script>
     <script type="text/javascript" src="ContentController.js"></script>
+    <script type="text/javascript" src="CartController.js"></script>
 
 </head>
     <body>
 
     <div id="content" ng-controller="ContentCtrl">
-        <div id="header">
+        <div id="top_header">
             Products in cart: {{ cart_size }}
         </div>
 
@@ -37,9 +36,9 @@
             <div class="message" ng-repeat="message in messages">{{ message }}</div>
         </div>
 
-        <div id="products" ng-controller="ProductsCtrl">
+        <div id="products" ng-controller="ProductsCtrl" ng-if="!cartOpen">
             <div id="all_product" ng-show="!productSelected">
-                PRODUCTS:
+                <div class="header">PRODUCTS</div>
                 <div ng-repeat="product in products" class="product-label" ng-click="showProductDetails(product.id)">
                     <div>{{ product.name }}</div>
                 </div>
@@ -52,13 +51,35 @@
                 <div ng-click="orderProduct()">ADD TO CART</div>
 
                 <div>
-                    <image width="100px" ng-src="{{selectedProduct.photo_url}}"></image>
+                    <image ng-src="{{selectedProduct.photo_url}}"></image>
                 </div>
 
-                <div class="button" id="backToProducts" ng-click="backToAllProducts()">TERUG naar het overzicht</div>
-
+                <div class="button" ng-click="backToAllProducts()">BACK to all products</div>
             </div>
         </div>
+
+        <div id="cart" ng-if="cartOpen == true" ng-controller="CartCtrl">
+            <div class="header">CART</div>
+
+            Total price: {{ order_grand_total | currency:'€' }}
+
+            <table>
+                <th></th><th>Name</th><th>Price before tax</th><th>Tax</th><th>Total price</th>
+
+                <tr class="orderRow" ng-repeat="order in orders">
+                    <td><image ng-src="{{order.photo_url}}"></image></td>
+                    <td>{{order.name}}</td>
+                    <td>{{order.price_before_tax | currency:'€'}}</td>
+                    <td>{{order.tax_percentage}} %</td>
+                    <td class="total_price">{{order.total_price | currency:'€' }}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="button" ng-if="cartOpen == true" ng-click="closeCart()">CLOSE cart</div>
+        <div class="button" ng-if="cartOpen == false" ng-click="openCart()">OPEN cart</div>
+
     </div>
 
      <!--login overlay-->
