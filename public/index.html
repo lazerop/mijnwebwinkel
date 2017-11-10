@@ -25,45 +25,45 @@
     <script type="text/javascript" src="ProductsController.js"></script>
 
 </head>
-<body>
+    <body>
 
-<div id="content">
-    <div id="products" ng-controller="ProductsCtrl">
-        <div id="all_product" ng-show="!productSelected">
-            PRODUCTS:
-            <div ng-repeat="product in products" class="product-label" ng-click="showProductDetails(product.id)">
-                <div>{{ product.name }}</div>
-            </div>
-        </div>
-
-        <div id="productDetail" ng-show="productSelected">
-            <div>Naam: {{ selectedProduct.name }}</div>
-            <div>Prijs (zonder BTW): {{ selectedProduct.price_before_tax }}</div>
-            <div>BTW: {{ selectedProduct.tax_percentage }} %</div>
-            <div ng-click="orderProduct(selectedProduct.id)">ADD TO CART</div>
-
-            <div>
-                <image width="100px" ng-src="{{selectedProduct.photo_url}}"></image>
+    <div id="content">
+        <div id="products" ng-controller="ProductsCtrl">
+            <div id="all_product" ng-show="!productSelected">
+                PRODUCTS:
+                <div ng-repeat="product in products" class="product-label" ng-click="showProductDetails(product.id)">
+                    <div>{{ product.name }}</div>
+                </div>
             </div>
 
-            <div class="button" id="backToProducts" ng-click="backToAllProducts()">TERUG naar het overzicht</div>
+            <div id="productDetail" ng-show="productSelected">
+                <div>Naam: {{ selectedProduct.name }}</div>
+                <div>Prijs (zonder BTW): {{ selectedProduct.price_before_tax }}</div>
+                <div>BTW: {{ selectedProduct.tax_percentage }} %</div>
+                <div ng-click="orderProduct(selectedProduct.id)">ADD TO CART</div>
 
+                <div>
+                    <image width="100px" ng-src="{{selectedProduct.photo_url}}"></image>
+                </div>
+
+                <div class="button" id="backToProducts" ng-click="backToAllProducts()">TERUG naar het overzicht</div>
+
+            </div>
         </div>
     </div>
-</div>
 
- <!--login overlay-->
-<div id="login-overlay" ng-show="!sessionIsValid()" ng-controller="LoginCtrl">
-    <div id="login">
-        <form name="loginForm" ng-submit="login();">
-            {{ error }}
-            Username: <input type="text" ng-model="session.username" required><br>
-            Password: <input type="password" ng-model="session.password" required><br>
-            <button type="submit"><icon>save</icon> Login</button>
-        </form>
+     <!--login overlay-->
+    <div id="login-overlay" ng-show="!sessionIsValid()" ng-controller="LoginCtrl">
+        <div id="login">
+            <form name="loginForm" ng-submit="login();">
+                {{ error }}
+                Username: <input type="text" ng-model="session.username" required><br>
+                Password: <input type="password" ng-model="session.password" required><br>
+                <button type="submit"><icon>save</icon> Login</button>
+            </form>
+        </div>
     </div>
-</div>
 
-</body>
+    </body>
 </html>
 
