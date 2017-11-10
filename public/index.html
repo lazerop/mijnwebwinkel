@@ -69,20 +69,20 @@
         </div>
 
         <div id="cart" ng-if="cartOpen == true" ng-controller="CartCtrl">
-            <div id="grand_total">Total price: {{ order_grand_total | currency:'€' }}</div>
+            <div id="cart_wrapper">
+                <div id="grand_total">Total price: {{ order_grand_total | currency:'€' }}</div>
+                <table id="all_orders">
+                    <th class="product_image"></th><th>Name</th><th>Price before tax</th><th>Tax</th><th>Total price</th>
 
-            <table id="all_orders">
-                <th class="product_image"></th><th>Name</th><th>Price before tax</th><th>Tax</th><th>Total price</th>
-
-                <tr class="orderRow" ng-repeat="order in orders">
-                    <td class="product_image"><image ng-src="{{order.photo_url}}"></image></td>
-                    <td>{{order.name}}</td>
-                    <td>{{order.price_before_tax | currency:'€'}}</td>
-                    <td>{{order.tax_percentage}} %</td>
-                    <td class="total_price">{{order.total_price | currency:'€' }}</td>
-                </tr>
-
-            </table>
+                    <tr class="orderRow" ng-repeat="order in orders">
+                        <td class="product_image"><image ng-src="{{order.photo_url}}"></image></td>
+                        <td>{{order.name}}</td>
+                        <td>{{order.price_before_tax | currency:'€'}}</td>
+                        <td>{{order.tax_percentage}} %</td>
+                        <td class="total_price">{{order.total_price | currency:'€' }}</td>
+                    </tr>
+                    </table>
+            </div>
         </div>
 
     </div>

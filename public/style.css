@@ -22,10 +22,8 @@ img {
 #login-overlay form {
     background: white;
     height: 20%;
-    width: 40%;
     border-radius: 20px;
     padding: 20px;
-    margin-left: calc(30%);
     margin-top: 100px;
 }
 
@@ -92,7 +90,7 @@ td:not(.product_image) {
     background-color: cornflowerblue;
     cursor: pointer;
     font-size: 20px;
-    height: 22px;
+    height: 22px !important;
     text-align: left;
     padding: 0px 0px 0px 3px !important;
 }
@@ -119,8 +117,12 @@ td:not(.product_image) {
 
 #cart {
     border: 2px solid purple;
-    padding: 15px;
     width: 500px;
+}
+
+#cart_wrapper {
+    with: 450px;
+    margin: 25px;
 }
 
 #cart .total_price {
