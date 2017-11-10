@@ -25,11 +25,11 @@
     <script type="text/javascript" src="CartController.js"></script>
 
 </head>
-    <body>
+    <body ng-controller="LoginCtrl">
 
-    <div id="content" ng-controller="ContentCtrl">
+    <div id="content" ng-if="sessionIsValid()" ng-controller="ContentCtrl">
         <div id="top_header">
-            Products in cart: {{ cart_size }}
+            Logged in as: {{ loggedin_user_name }}. Products in cart: {{ cart_size }}
         </div>
 
         <div id="messages">
@@ -83,7 +83,7 @@
     </div>
 
      <!--login overlay-->
-    <div id="login-overlay" ng-show="!sessionIsValid()" ng-controller="LoginCtrl">
+    <div id="login-overlay" ng-show="!sessionIsValid()">
         <div id="login">
             <form name="loginForm" ng-submit="login();">
                 {{ error }}

@@ -15,7 +15,8 @@
                     if (data.data) {
                         session.valid = true;
                         session.loggedin_user_id = data.data;
-                        session.loggedin_user_name = $scope.session.username;
+
+                        $scope.loggedin_user_name = $scope.session.username;
                         $scope.error = '';
                     }
                 }, function () {
