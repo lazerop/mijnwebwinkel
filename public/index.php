@@ -71,11 +71,12 @@ $app->get('/login/{user_name}/{password}', function (Request $request, Response 
 
     $authenticated = User::checkCredentials($user_name, $password);
 
-    if ($authenticated == true) {
-        User::setLoggedIn($user_name);
+    if (sizeof($authenticated) > 0) {
+        User::setLoggedIn($authenticated[0]['id']);
+        return restResponse($response, 200, $authenticated[0]['id']);
     }
 
-    return restResponse($response, 200, $authenticated);
+    return restResponse($response, 401);
 });
 
 $app->get('/logout/{user_name}', function (Request $request, Response $response, $args) {

@@ -2,7 +2,7 @@
 
 (function() {
     angular
-        .module('webcart', ['ngCookies'])
+        .module('webcart', [])
         .run(function ($rootScope) {
         })
 
@@ -10,4 +10,6 @@
         })
 
         .value('restLocation', 'http://localhost:8080')
+
+        .value('session', {})
 })();

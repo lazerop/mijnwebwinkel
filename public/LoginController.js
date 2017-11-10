@@ -5,37 +5,33 @@
         .module('webcart')
         .controller('LoginCtrl', LoginCtrl);
 
-    function LoginCtrl ($scope, $http, restLocation, $cookies) {
+    function LoginCtrl ($scope, $http, restLocation, session) {
+        $scope.session = {};
 
         $scope.login = function () {
             console.log(' login f');
 
-            $http.get(restLocation + '/login/' + $scope.session.username + '/' + $scope.session.password).then(function (data) {
-                console.log(data);
-                if (data.data) {
-                    // $scope.sessionIsValid = true
-
-                    $cookies.loggedin =  'ffff';
-                    console.log('cookie set');
-                    console.log($cookies.loggedin);
-                }
+            $http.get(restLocation + '/login/' + $scope.session.username + '/' + $scope.session.password).then(
+                function (data) {
+                    // Successful login
+                    if (data.data) {
+                        session.valid = true;
+                        session.logged_user_id = data.data;
+                        $scope.error = '';
+                    }
+                }, function () {
+                    // Wrong login
+                    $scope.error = 'There was an error logging in. Try again.'
             })
         };
 
         $scope.sessionIsValid = function () {
-            console.log(' sessionIsValid f');
-            console.log($cookies.loggedin);
-
-            return $cookies.get('loggedin') === true
+            return session.valid;
         };
 
-        $scope.resetPassword = function () {
-            if (!$scope.session.email) return alert('Please enter your email-address');
-
-            // todo: hack: use translation for message, move backend call somewhere else
-            $http.post(restLocation + '/resetTokens', {email: $scope.session.email}).then(function () {
-                alert('password reset email sent');
-            })
+        $scope.logout = function () {
+            session.valid = false;
+            session.logged_user_id = null;
         };
     }
 })();

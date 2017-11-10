@@ -24,26 +24,23 @@ class DBObject {
 
 class Product extends DBObject {
     public static function getAll() {
-
         return Product::selectByQuery("SELECT * FROM product");
     }
 }
 
 class User extends DBObject {
     public static function checkCredentials($username, $password) {
-
-        $ret_value = User::selectByQuery("SELECT COUNT(*) FROM user WHERE name =:name AND password=:password", array(
+        return User::selectByQuery("SELECT * FROM user WHERE name =:name AND password=:password", array(
             "name" => $username,
             "password" => md5($password . $GLOBALS['password_salt'])
         ));
 
-        return $ret_value[0]['COUNT(*)'] != "0";
     }
 
-    public static function setLoggedIn($username) {
-        User::query("UPDATE user SET logged_in = :logged_in WHERE name =:name", array(
+    public static function setLoggedIn($user_id) {
+        User::query("UPDATE user SET logged_in = :logged_in WHERE id =:id", array(
             "logged_in" => true,
-            "name" => $username
+            "id" => $user_id
         ));
     }
 
