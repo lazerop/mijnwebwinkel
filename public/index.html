@@ -85,11 +85,16 @@
      <!--login overlay-->
     <div id="login-overlay" ng-show="!sessionIsValid()">
         <div id="login">
-            <form name="loginForm" ng-submit="login();">
+            <form name="loginForm">
                 {{ error }}
-                Username: <input type="text" ng-model="session.username" required><br>
-                Password: <input type="password" ng-model="session.password" required><br>
-                <button type="submit"><icon>save</icon> Login</button>
+                <table>
+                    <tr>
+                        <td>Username:</td><td><input type="text" ng-model="session.username" required></td>
+                        <td>Password:</td><td><input type="password" ng-model="session.password" required></td>
+                        <td><div class="button" ng-click="login()">Save login</div></tD>
+                    </tr>
+                </table>
+
             </form>
         </div>
     </div>

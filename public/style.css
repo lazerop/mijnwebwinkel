@@ -2,7 +2,6 @@ img {
     width: 100px;
 }
 
-
 table, th, td {
     border: 1px solid black;
 }
@@ -11,22 +10,38 @@ table {
     border-collapse: collapse;
 }
 
-
 #login-overlay {
     z-index: 100;
     position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    margin: 15px;
+    border-radius: 20px;
+    padding: 25px;
     background: forestgreen;
+}
+
+#login-overlay form {
+    background: white;
+    height: 20%;
+    width: 40%;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: calc(30%);
+    margin-top: 100px;
+}
+
+#login-overlay table, #login-overlay th, #login-overlay td {
+    border: 0;
 }
 
 #productDetail {
     border: 3px solid green;
 }
 
-.product-label, .button#backToProducts {
-    cursor: pointer;
+.product-label {
     margin: 2px;
 }
 
@@ -35,6 +50,10 @@ table {
     border-radius: 2px;
     padding: 3px;
     margin: 1px;
+    width: 100px;
+    height: 15px;
+    background-color: red;
+    cursor: pointer;
 }
 
 #cart .total_price {
