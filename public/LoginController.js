@@ -32,6 +32,7 @@
         $scope.logout = function () {
             session.valid = false;
             session.loggedin_user_id = null;
+            $scope.session = {};
         };
     }
 })();

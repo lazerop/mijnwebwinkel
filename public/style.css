@@ -96,7 +96,7 @@ td:not(.product_image) {
 }
 
 #top_header {
-    height: 1em;
+    height: 50px;
     padding: 2px;
     background-color: rgba(236, 201, 62, .3);
 }

@@ -27,7 +27,7 @@
 
     <div id="content" ng-if="sessionIsValid()" ng-controller="ContentCtrl">
         <div id="top_header">
-            Logged in as: {{ loggedin_user_name }}. Products in cart: {{ cart_size }}
+            Logged in as: {{ loggedin_user_name }}. Products in cart: {{ cart_size }} <div class="button" ng-click="logout()">LOGOUT</div>
         </div>
 
         <div id="messages">
