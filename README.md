@@ -8,6 +8,3 @@
 	username: "thirdperson", password: "NOGEENPW"
 
 - gekozen voor een simpel inlog systeem omdat ik geen cookies wilde / kon zetten. Dus bij een refresh moet je opnieuw inloggen.
-
-
-Nog proberen: serven index.html via Slim
